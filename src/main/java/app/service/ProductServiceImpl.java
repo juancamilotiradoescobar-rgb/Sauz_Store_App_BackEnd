@@ -15,7 +15,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(int id, String name, String category, String size, String color, double price, int stock) {
-        validateProduct(id, name, price, stock);
+        validateProduct(id, name, category, size, color, price, stock);
         if (productRepository.selectProductById(id) != null) {
             throw new IllegalArgumentException("Ya existe un producto con ese ID.");
         }
@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(int id, String name, String category, String size, String color, double price, int stock) {
-        validateProduct(id, name, price, stock);
+        validateProduct(id, name, category, size, color, price, stock);
         Product product = new Product(id, name, category, size, color, price, stock);
         return productRepository.updateProduct(product);
     }
@@ -45,12 +45,21 @@ public class ProductServiceImpl implements ProductService {
         productRepository.deleteProduct(id);
     }
 
-    private void validateProduct(int id, String name, double price, int stock) {
+    private void validateProduct(int id, String name, String category, String size, String color, double price, int stock) {
         if (id <= 0) {
             throw new IllegalArgumentException("El ID del producto debe ser mayor que cero.");
         }
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("El nombre del producto no puede estar vacío.");
+        }
+        if (category == null || category.isBlank()) {
+            throw new IllegalArgumentException("La categoría del producto no puede estar vacía.");
+        }
+        if (size == null || size.isBlank()) {
+            throw new IllegalArgumentException("La talla del producto no puede estar vacía.");
+        }
+        if (color == null || color.isBlank()) {
+            throw new IllegalArgumentException("El color del producto no puede estar vacío.");
         }
         if (!Double.isFinite(price) || price < 0) {
             throw new IllegalArgumentException("El precio debe ser un número válido y no negativo.");
