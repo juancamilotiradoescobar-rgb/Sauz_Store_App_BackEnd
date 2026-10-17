@@ -4,6 +4,9 @@ import app.domain.enums.SizeEnum;
 import app.service.validations.FormTypeValidator;
 
 public class SetProductSize {
+    private SetProductSize() {
+    }
+
     public static String getSize() {
         while (true) {
             int option = FormTypeValidator.intValidator("Seleccione la talla:\n1. XS\n2. S\n3. M\n4. L\n5. XL");

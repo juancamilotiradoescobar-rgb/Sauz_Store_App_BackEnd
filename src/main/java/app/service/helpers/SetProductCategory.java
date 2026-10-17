@@ -4,6 +4,9 @@ import app.domain.enums.CategoryEnum;
 import app.service.validations.FormTypeValidator;
 
 public class SetProductCategory {
+    private SetProductCategory() {
+    }
+
     public static String getCategory() {
         while (true) {
             int option = FormTypeValidator.intValidator(
