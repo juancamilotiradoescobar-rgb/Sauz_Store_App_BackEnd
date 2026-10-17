@@ -21,4 +21,18 @@ public class Customer extends Person {
         this.customerType = customerType;
     }
 
+    @Override
+    public String getRole() {
+        return "Cliente (" + (customerType != null ? customerType : "Estándar") + ")";
+    }
+
+    @Override
+    public String getDetails() {
+        return "ID: " + getId()
+                + " | Nombre: " + getFullName()
+                + " | Documento: " + getDocType()
+                + " | Teléfono: " + getPhone()
+                + " | Correo: " + getEmail()
+                + " | Tipo: " + customerType;
+    }
 }
