@@ -6,6 +6,7 @@ import app.service.inputport.SaleService;
 import app.service.validations.FormTypeValidator;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SaleView {
@@ -43,7 +44,14 @@ public class SaleView {
     }
 
     public void showAllSales() {
-        for (Sale sale : saleService.selectAllSales()) {
+        List<Sale> sales = saleService.selectAllSales();
+        if (sales.isEmpty()) {
+            System.out.println("No hay ventas registradas.");
+            return;
+        }
+
+        System.out.println("\n--- LISTA DE VENTAS ---");
+        for (Sale sale : sales) {
             System.out.println("Venta: " + sale.getId()
                     + " | Cliente: " + sale.getCustomerId()
                     + " | Fecha: " + sale.getDate()

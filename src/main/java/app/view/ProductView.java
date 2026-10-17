@@ -6,6 +6,8 @@ import app.service.helpers.SetProductSize;
 import app.service.inputport.ProductService;
 import app.service.validations.FormTypeValidator;
 
+import java.util.List;
+
 public class ProductView {
     private final ProductService productService;
 
@@ -31,7 +33,14 @@ public class ProductView {
     }
 
     public void showAllProducts() {
-        for (Product product : productService.selectAllProducts()) {
+        List<Product> products = productService.selectAllProducts();
+        if (products.isEmpty()) {
+            System.out.println("No hay productos registrados.");
+            return;
+        }
+
+        System.out.println("\n--- LISTA DE PRODUCTOS ---");
+        for (Product product : products) {
             System.out.println("ID: " + product.getId()
                     + " | Nombre: " + product.getName()
                     + " | Categoría: " + product.getCategory()

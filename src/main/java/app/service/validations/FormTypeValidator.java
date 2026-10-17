@@ -4,7 +4,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class FormTypeValidator {
-    static Scanner sc = new Scanner(System.in);
+    private static final Scanner sc = new Scanner(System.in);
+
+    private FormTypeValidator() {
+    }
 
     public static int intValidator(String prompt) {
         while (true) {

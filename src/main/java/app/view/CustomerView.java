@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.List;
 
 public class CustomerView {
     private final CustomerService customerService;
@@ -37,7 +38,14 @@ public class CustomerView {
     }
 
     public void showAllCustomers() {
-        for (Customer customer : customerService.selectAllCustomers()) {
+        List<Customer> customers = customerService.selectAllCustomers();
+        if (customers.isEmpty()) {
+            System.out.println("No hay clientes registrados.");
+            return;
+        }
+
+        System.out.println("\n--- LISTA DE CLIENTES ---");
+        for (Customer customer : customers) {
             System.out.println("ID: " + customer.getId()
                     + " | Nombre: " + customer.getName() + " " + customer.getLastName()
                     + " | Documento: " + customer.getDocType()
