@@ -2,7 +2,7 @@ package app.domain;
 
 import java.util.Date;
 
-public class Person {
+public abstract class Person {
     private int id;
     private String docType;
     private String name;
@@ -100,4 +100,11 @@ public class Person {
         this.birthDate = birthDate;
     }
 
+    public String getFullName() {
+        return (name != null ? name : "") + (lastName != null ? " " + lastName : "");
+    }
+
+    public abstract String getRole();
+
+    public abstract String getDetails();
 }
